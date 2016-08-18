@@ -1,4 +1,4 @@
-(require 'libvterm-core)
+(require 'libvterm-core nil t)
 
 (defun libvterm-test ()
   (interactive)
