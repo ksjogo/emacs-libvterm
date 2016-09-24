@@ -1,0 +1,46 @@
+language: c
+
+os:
+  - linux
+#  - osx
+
+compiler:
+  - gcc
+#  - clang
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
+    packages:
+      - cmake
+      - cmake-data
+      - libssh2-1-dev
+
+sudo: false
+
+env:
+  global:
+    - EMACSCONFFLAGS="--with-x-toolkit=no --without-x --without-all --with-xml2 --with-toolkit-scroll-bars=yes --with-modules"
+  matrix:
+    - EMACS_VERSION=25.1
+#  - EMACS_VERSION=snapshot
+
+matrix:
+  allow_failures:
+    - os: osx
+#  - compiler: clang
+#    - env: EMACS_VERSION=snapshot
+
+before_install:
+  - export PATH="$HOME/bin:$PATH"
+  - curl -SOL https://github.com/flycheck/emacs-travis/raw/master/emacs-travis.mk
+  - make -f emacs-travis.mk install_emacs install_cask
+
+script:
+  - cmake --version
+  - cmake .
+  - make
+  - cask install
+  - ls -lah
+  - cask exec ert-runner

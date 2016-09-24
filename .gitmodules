@@ -1,4 +1,4 @@
 [submodule "libvterm"]
 	path = libvterm
-	url = https://github.com/neovim/libvterm.git
+	url = https://github.com/ksjogo/libvterm.git
 	branch = master

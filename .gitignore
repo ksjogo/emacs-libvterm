@@ -31,3 +31,9 @@
 # Debug files
 *.dSYM/
 *.su
+/CMakeCache.txt
+.cask/
+CMakeFiles/
+/cmake_install.cmake
+/include/emacs-module.h
+Makefile

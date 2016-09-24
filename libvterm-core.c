@@ -41,14 +41,14 @@ static void provide (emacs_env *env, const char *feature)
 
 //FUNCS
 
-static emacs_value Flibvterm_test (emacs_env *env, ptrdiff_t nargs, emacs_value args[], void *data)
+static emacs_value Flibvterm_core_magic (emacs_env *env, ptrdiff_t nargs, emacs_value args[], void *data)
 {
     return env->make_integer (env, 42);
 }
 
-static emacs_value Flibvterm_new (emacs_env *env, ptrdiff_t nargs, emacs_value args[], void *data)
+static emacs_value Flibvterm_core_new (emacs_env *env, ptrdiff_t nargs, emacs_value args[], void *data)
 {
-    VTerm *vterm = vterm_new(20,80);
+    VTerm *vterm = vterm_new(20, 80);
     return env->make_integer (env, 1);
 }
 
@@ -60,8 +60,8 @@ int emacs_module_init (struct emacs_runtime *ert)
 
 #define DEFUN(lsym, csym, amin, amax, doc, data)  bind_function (env, lsym, env->make_function(env, amin, amax, csym, doc, data))
 
-    DEFUN("libvterm-core-test", Flibvterm_test, 0, 0, "libvterm test", NULL);
-    DEFUN("libvterm-new", Flibvterm_new, 0, 0, "libvterm new", NULL);
+    DEFUN("libvterm-core-magic", Flibvterm_core_magic, 0, 0, "libvterm magic", NULL);
+    DEFUN("libvterm-core-new", Flibvterm_core_new, 0, 0, "libvterm new", NULL);
 
 #undef DEFUN
 

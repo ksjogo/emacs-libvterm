@@ -1,4 +1,4 @@
 (add-to-list 'load-path default-directory)
 (require 'libvterm)
-(libvterm-test)
+(message (number-to-string (libvterm-magic)))
 (ielm)
