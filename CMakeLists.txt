@@ -10,6 +10,8 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libvterm/include)
 
 IF(APPLE)
   SET(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+  SET(CMAKE_SKIP_RPATH true)
+
 ENDIF()
 
 ADD_LIBRARY(vterm-core SHARED libvterm-core.c)
